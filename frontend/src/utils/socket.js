@@ -22,11 +22,15 @@ export const initSocket = () => {
     socket = io(backendUrl, {
       transports: ['websocket', 'polling'],
       reconnection: true,
-      reconnectionAttempts: 5,
+      reconnectionAttempts: 10,
       reconnectionDelay: 1000,
       reconnectionDelayMax: 5000,
+      timeout: 20000,
       secure: backendUrl.startsWith('https'),
-      rejectUnauthorized: false
+      rejectUnauthorized: false,
+      upgrade: true,
+      addTrailingSlash: true,
+      path: '/socket.io/',
     });
 
     socket.on('connect', () => {
