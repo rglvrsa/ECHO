@@ -2,7 +2,6 @@ test-*.js
 Procfile
 README.md
 *.md
-app.js
 .env
 .env.local
 
