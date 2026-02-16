@@ -17,15 +17,16 @@ let socket = null;
 export const initSocket = () => {
   if (!socket) {
     const backendUrl = getBackendUrl();
-    console.log('🔌 Connecting to WebSocket:', backendUrl);
+    console.log('🔌 Connecting to backend:', backendUrl);
 
+    // Prioritize polling for Vercel serverless
     socket = io(backendUrl, {
-      transports: ['websocket', 'polling'],
+      transports: ['polling', 'websocket'],
       reconnection: true,
-      reconnectionAttempts: 20,
+      reconnectionAttempts: 50,
       reconnectionDelay: 500,
       reconnectionDelayMax: 10000,
-      timeout: 30000,
+      timeout: 45000,
       secure: backendUrl.startsWith('https'),
       rejectUnauthorized: false,
       upgrade: true,
@@ -34,13 +35,15 @@ export const initSocket = () => {
       forceNew: false,
       multiplex: true,
       autoConnect: true,
-      // Additional settings for Vercel
       rememberUpgrade: true,
-      reconnectionDelayMax: 10000,
+      pollingInterval: 1000,
+      pollingIntervalBackoff: 1.5,
+      maxHttpBufferSize: 1e6,
     });
 
     socket.on('connect', () => {
       console.log('✅ Connected to server:', socket.id);
+      console.log('📡 Transport:', socket.io.engine.transport.name);
     });
 
     socket.on('disconnect', () => {
@@ -49,7 +52,7 @@ export const initSocket = () => {
 
     socket.on('connect_error', (error) => {
       console.error('🔴 Connection error:', error.message || error);
-      console.log('📡 Retrying with polling transport...');
+      console.log('📡 Will retry with polling...');
     });
 
     socket.on('error', (error) => {
@@ -57,11 +60,11 @@ export const initSocket = () => {
     });
 
     socket.on('reconnect_attempt', () => {
-      console.log('🔄 Attempting to reconnect...');
+      console.log('🔄 Reconnecting...');
     });
 
     socket.on('reconnect', () => {
-      console.log('✅ Reconnected to server');
+      console.log('✅ Reconnected successfully');
     });
   }
   return socket;

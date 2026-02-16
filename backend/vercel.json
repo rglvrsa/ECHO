@@ -1,25 +1,27 @@
 {
-  "buildCommand": "echo 'Building backend...'",
+  "buildCommand": "echo 'Backend ready'",
   "outputDirectory": "./",
-  "rewrites": [
-    {
-      "source": "/api/(.*)",
-      "destination": "/api/$1"
-    },
-    {
-      "source": "/socket.io/(.*)",
-      "destination": "/api/socket"
-    },
-    {
-      "source": "/(.*)",
-      "destination": "/api/index"
-    }
-  ],
   "functions": {
     "api/**/*.js": {
-      "maxDuration": 300
+      "maxDuration": 60,
+      "memory": 1024
     }
   },
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/api/$1",
+      "methods": ["GET", "POST", "PUT", "DELETE", "OPTIONS"]
+    },
+    {
+      "src": "/health",
+      "dest": "/api/health"
+    },
+    {
+      "src": "/.*",
+      "dest": "/api/index"
+    }
+  ],
   "headers": [
     {
       "source": "/api/(.*)",
@@ -35,6 +37,10 @@
         {
           "key": "Access-Control-Allow-Headers",
           "value": "Content-Type, Authorization"
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json"
         }
       ]
     }
