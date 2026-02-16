@@ -1,0 +1,37 @@
+{
+    "version": 2,
+    "buildCommand": "npm install",
+    "env": {
+        "NODE_ENV": "production"
+    },
+    "functions": {
+        "api/**/*.js": {
+            "runtime": "nodejs20.x",
+            "memory": 1024,
+            "maxDuration": 300
+        },
+        "index.js": {
+            "runtime": "nodejs20.x"
+        }
+    },
+    "routes": [
+        {
+            "src": "^/api/(.*)",
+            "dest": "/api/$1"
+        },
+        {
+            "src": "^/health",
+            "dest": "/api/health"
+        },
+        {
+            "src": ".*",
+            "dest": "/index.js"
+        }
+    ],
+    "rewrites": [
+        {
+            "source": "/api/:path*",
+            "destination": "/api/:path*"
+        }
+    ]
+}

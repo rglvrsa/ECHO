@@ -1,0 +1,36 @@
+{
+  "name": "echo-backend",
+  "version": "1.0.0",
+  "description": "Backend for ECHO - Anonymous Social Connector",
+  "main": "index.js",
+  "engines": {
+    "node": "20.x"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon app.js",
+    "test": "node test-hybrid-storage.js",
+    "build": "echo 'No build needed for serverless'"
+  },
+  "keywords": [
+    "websocket",
+    "chat",
+    "webrtc",
+    "anonymous"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@gradio/client": "^2.0.4",
+    "axios": "^1.13.5",
+    "cors": "^2.8.5",
+    "eventsource": "^4.1.0",
+    "express": "^4.18.2",
+    "ioredis": "^5.9.2",
+    "socket.io": "^4.6.1",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}

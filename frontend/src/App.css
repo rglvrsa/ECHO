@@ -1,0 +1,74 @@
+* {
+    margin: 0;
+    padding: 0;
+
+}
+
+body {
+
+    background-color: #1d1d1d;
+    overflow-x: hidden;
+}
+
+@font-face {
+    font-family: 's1';
+    src: url('/fonts/SpotifyMixUI-Bold.woff2') format('woff2');
+
+}
+
+@font-face {
+    font-family: 's2';
+    src: url('/fonts/SpotifyMixUI-Bold1.woff2') format('woff2');
+
+}
+
+@font-face {
+    font-family: 's3';
+    src: url('/fonts/SpotifyMixUI-Bold2.woff2') format('woff2');
+
+}
+
+@font-face {
+    font-family: 's4';
+    src: url('/fonts/SpotifyMixUI-Bold3.woff2') format('woff2');
+
+}
+
+@font-face {
+    font-family: 's5';
+    src: url('/fonts/SpotifyMixUI-Regular.woff2') format('woff2');
+
+}
+
+@font-face {
+    font-family: 's6';
+    src: url('/fonts/SpotifyMixUI-Regular1.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 's7';
+    src: url('/fonts/i1.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 's8';
+    src: url('/fonts/i2.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 's9';
+    src: url('/fonts/i3.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 's10';
+    src: url('/fonts/z/i10.otf') format('truetype');
+}
+
+@font-face {
+    font-family: 'sc';
+    src: url('/Font/sc.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}

@@ -1,0 +1,209 @@
+#navbar
+{
+    position: fixed;
+    padding: 0vw 1.4vw;
+    height:4vw;
+    width:38vw;
+    background-color: rgba(245, 245, 245, 0.65);
+    backdrop-filter: blur(8px);
+    border-radius: 5px;
+    margin-left:31vw;
+    margin-top:2vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1000;
+}
+#navrig
+{
+    font-family: s7, sans-serif;
+    background-color: rgb(161, 255, 98);
+    padding: 0.1vw 0.5vw;    
+    font-size: 1.65vw;
+    font-weight: 500;
+    height: 2.86vw;
+    width: 7vw;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;    
+    justify-content: center;    
+}
+#navmid
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    font-family: i10, sans-serif;    
+    font-weight: 900;
+    height:3.6vw;
+    width:8vw;   
+    overflow: hidden;
+    position: relative;
+}
+.m1{
+    background-color: transparent;
+    display: flex;
+    height:4vw;
+    align-items: center;
+    gap: 0.6vw;
+    letter-spacing: -0.31vw;
+    font-size:2.7vw;
+    color: #111; 
+    position: absolute;
+}
+.m2
+{
+    background-color: transparent;
+    position: relative;
+    display: flex;
+    height:4vw;
+    align-items: center;
+    gap: 0.6vw;
+    letter-spacing: -0.31vw;
+    font-size:2.7vw; 
+    top:3.67vw;
+}
+.m2 svg{
+    width: 4vw;
+    height: 3.5vw;
+    display: block; 
+    flex-shrink: 0; 
+    background-color: transparent;
+}
+
+
+#navleft {
+    position: relative;
+    background-color: #2a2a2a;
+    border-radius: 8px;    
+}
+
+.menu-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8vw;
+    background: transparent;
+    color: #fff;
+    border: none;
+    padding: 0.7vw 1.2vw;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: s5, sans-serif;
+    font-weight: 600;
+    font-size: 1.1vw;    
+    transition: background 200ms ease;
+}
+
+.menu-btn:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.menu-btn:focus {
+    outline: 2px solid rgba(255, 255, 255, 0.3);
+    outline-offset: 2px;
+}
+
+.menu-icon-wrapper {
+    width: 1.8vw;
+    height: 1.8vw;
+    display: flex;
+    background-color: transparent;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.menu-line {
+    display: block;
+    width: 100%;
+    height: 0.13vw;
+    background: #fff;
+    border-radius: 2px;
+    transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1),
+                opacity 200ms ease;
+    transform-origin: center center;
+    position: absolute;
+}
+
+.menu-line-1 {
+    transform: translateY(-0.35vw);
+}
+
+.menu-line-2 {
+    transform: translateY(0.35vw);
+}
+
+/* Animate to perfect cross when open */
+.menu-btn.open .menu-line-1 {
+    transform: translateY(0) rotate(45deg);
+}
+
+.menu-btn.open .menu-line-2 {
+    transform: translateY(0) rotate(-45deg);
+}
+
+.menu-label {
+    display: inline-block;
+    line-height: 1;    
+    background-color: transparent;
+}
+#qw
+{
+    position: fixed;
+    width: 40.6vw;
+    height: 1.2vw;
+    overflow: hidden;
+    margin-left: 31vw;
+    margin-top: 6.6vw;
+    z-index: 999;
+}
+
+#scrolltext
+{
+    position: absolute;
+    width: 40.6vw;
+    height: 1.2vw;
+    background-color: rgb(161, 255, 98);
+    display: flex;    
+    align-items: center;  
+    border-radius: 2px;  
+    top: 0;
+    left: 0;
+    overflow: hidden;
+}
+#p2l1
+{
+    display: flex;   
+    align-items: center;
+    animation: scroll 20s linear infinite;
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-40.6vw);
+    }
+}
+
+#p2l1 .marquee {
+    width:40.6vw;    
+    display: flex;    
+    flex-shrink: 0;
+}
+#p2l1 .marquee div {
+    display: flex;
+    height:1.2vw;
+    width:12vw;   
+    align-items: center;   
+    font-family: s5, sans-serif;    
+    font-size: 0.9vw; 
+}
+#p2l1 .marquee img {
+    height:0.8vw;
+}
+
