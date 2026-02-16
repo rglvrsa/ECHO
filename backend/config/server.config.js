@@ -1,7 +1,7 @@
 // Server Configuration
 const CORS_ORIGINS = process.env.CORS_ORIGIN
   ? process.env.CORS_ORIGIN.split(',').map(origin => origin.trim())
-  : ['https://echo-y3zi.vercel.app', 'http://localhost:5173'];
+  : ['https://echo-rglvrsa.vercel.app', 'http://localhost:3000', 'http://localhost:5173'];
 
 module.exports = {
   PORT: process.env.PORT || 3000,

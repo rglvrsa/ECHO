@@ -22,15 +22,21 @@ export const initSocket = () => {
     socket = io(backendUrl, {
       transports: ['websocket', 'polling'],
       reconnection: true,
-      reconnectionAttempts: 10,
-      reconnectionDelay: 1000,
-      reconnectionDelayMax: 5000,
-      timeout: 20000,
+      reconnectionAttempts: 20,
+      reconnectionDelay: 500,
+      reconnectionDelayMax: 10000,
+      timeout: 30000,
       secure: backendUrl.startsWith('https'),
       rejectUnauthorized: false,
       upgrade: true,
       addTrailingSlash: true,
       path: '/socket.io/',
+      forceNew: false,
+      multiplex: true,
+      autoConnect: true,
+      // Additional settings for Vercel
+      rememberUpgrade: true,
+      reconnectionDelayMax: 10000,
     });
 
     socket.on('connect', () => {
@@ -42,7 +48,20 @@ export const initSocket = () => {
     });
 
     socket.on('connect_error', (error) => {
-      console.error('🔴 Connection error:', error.message);
+      console.error('🔴 Connection error:', error.message || error);
+      console.log('📡 Retrying with polling transport...');
+    });
+
+    socket.on('error', (error) => {
+      console.error('🔴 Socket error:', error);
+    });
+
+    socket.on('reconnect_attempt', () => {
+      console.log('🔄 Attempting to reconnect...');
+    });
+
+    socket.on('reconnect', () => {
+      console.log('✅ Reconnected to server');
     });
   }
   return socket;
