@@ -21,15 +21,15 @@ export const initSocket = () => {
     console.log('🔌 Initializing Socket.io connection to:', backendUrl);
 
     socket = io(backendUrl, {
-      transports: ['polling', 'websocket'],
+      transports: ['polling'],  // Use polling ONLY on Vercel (no WebSocket)
       reconnection: true,
       reconnectionAttempts: 100,
-      reconnectionDelay: 500,
+      reconnectionDelay: 1000,
       reconnectionDelayMax: 5000,
-      timeout: 20000,
+      timeout: 30000,
       secure: backendUrl.startsWith('https'),
       rejectUnauthorized: false,
-      upgrade: false,  // Disable upgrade to prevent CORS issues
+      upgrade: false,  // Disable upgrade - polling only
       path: '/socket.io/',
       forceNew: false,
       multiplex: true,
@@ -38,6 +38,12 @@ export const initSocket = () => {
       pollingInterval: 1000,
       pollingIntervalBackoff: 1.5,
       maxHttpBufferSize: 1e6,
+      closeOnBeforeunload: false,
+      addTrailingSlash: true,
+      withCredentials: false,
+      extraHeaders: {
+        'X-Requested-With': 'XMLHttpRequest'
+      }
     });
 
     socket.on('connect', () => {
