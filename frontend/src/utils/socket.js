@@ -9,6 +9,7 @@ const getBackendUrl = () => {
     return 'http://localhost:5000';
   }
 
+  console.log('✅ Backend URL configured:', backendUrl);
   return backendUrl;
 };
 
@@ -17,25 +18,23 @@ let socket = null;
 export const initSocket = () => {
   if (!socket) {
     const backendUrl = getBackendUrl();
-    console.log('🔌 Connecting to backend:', backendUrl);
+    console.log('🔌 Initializing Socket.io connection to:', backendUrl);
 
-    // Prioritize polling for Vercel serverless
     socket = io(backendUrl, {
       transports: ['polling', 'websocket'],
       reconnection: true,
-      reconnectionAttempts: 50,
+      reconnectionAttempts: 100,
       reconnectionDelay: 500,
-      reconnectionDelayMax: 10000,
-      timeout: 45000,
+      reconnectionDelayMax: 5000,
+      timeout: 20000,
       secure: backendUrl.startsWith('https'),
       rejectUnauthorized: false,
-      upgrade: true,
-      addTrailingSlash: true,
+      upgrade: false,  // Disable upgrade to prevent CORS issues
       path: '/socket.io/',
       forceNew: false,
       multiplex: true,
       autoConnect: true,
-      rememberUpgrade: true,
+      rememberUpgrade: false,
       pollingInterval: 1000,
       pollingIntervalBackoff: 1.5,
       maxHttpBufferSize: 1e6,
